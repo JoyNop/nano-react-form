@@ -2,7 +2,7 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-11-30 18:03:38
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-01 10:30:34
+ * @LastEditTime: 2020-12-01 11:55:58
  * @Description: file content
  */
 import { FormTypes, IInitialState } from "../../../store/types";
@@ -14,7 +14,7 @@ interface InitState{
   activeId:string,
   config: {
     labelAlign: "left" |"right",
-    layout: "inline",
+    layout: string,
     size: "default",
   },
   mode:"pc"|"phone"
@@ -26,7 +26,7 @@ const initialState:InitState = {
   activeId:"",
   config: {
     labelAlign: "left" ,
-    layout: "inline",
+    layout: "horizontal",
     size: "default",
   },
   mode:"pc"

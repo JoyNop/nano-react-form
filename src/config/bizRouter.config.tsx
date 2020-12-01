@@ -31,7 +31,7 @@ const routes: Array<BizRouter> = [
     path: "/formpage",
     permission: true,
     exact: true,
-    singlePage: false,
+    singlePage: true,
     hasMenu: true,
     component: loadable(() => import("@/page/form.page"), {
       fallback: <InitSpin />,

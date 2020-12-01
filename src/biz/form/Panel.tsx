@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import initialData from "./initialData";
 import Left from "./Left";
-import "./form.module.less";
+import * as style from "./form.module.less";
 import Mid from "./Mid";
  
 import { connect } from "react-redux";
@@ -75,20 +75,20 @@ class Panel extends Component<PanelProps> {
     this.props.setFormContent(content);
   };
 
-  private updateConfig = (type: any, key: any, value: any) => {
-    console.log("type, key, value", type, key, value);
-    if (type === "2") {
-      // 更新表单配置
-      let { config } = this.state as any;
-      config[key] = value;
-      this.setState({ config });
-    }
-  };
+  // private updateConfig = (type: any, key: any, value: any) => {
+  //   console.log("type, key, value", type, key, value);
+  //   if (type === "2") {
+  //     // 更新表单配置
+  //     let { config } = this.state as any;
+  //     config[key] = value;
+  //     this.setState({ config });
+  //   }
+  // };
 
   render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <div className="form-design-panel">
+        <div className={style.form_design_panel}>
           <Left items={this.state.seeds} />
           <Mid config={this.state.config} />
           <Right 
