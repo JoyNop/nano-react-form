@@ -11,21 +11,21 @@
     display: flex;
     flex-direction: column;
 
-    > .title {
+    > .left_title {
       padding: 8px;
       margin: 0;
       text-align: center;
       font-weight: bold;
     }
 
-    .shell {
+    .left_shell {
       padding: 8px;
       transition: background-color 0.2s ease;
       background-color: #fff;
       flex-grow: 1;
       min-height: 100px;
 
-      .cell {
+      .seed_cell {
         margin-bottom: 8px;
         transition: background-color 0.2s ease;
 
@@ -48,14 +48,14 @@
     padding-top: 0;
     align-items: center;
 
-    > .title {
+    > .mid_title {
       padding: 8px;
       margin: 0;
       text-align: center;
       font-weight: bold;
     }
 
-    .shell {
+    .mid_shell {
       transition: background-color 0.2s ease;
       background-color: #fff;
       flex-grow: 1;
@@ -65,7 +65,7 @@
         no-repeat center 100px;
       width: 100%;
 
-      .cell {
+      .formItem_cell {
         border: 1px dashed lightgrey;
         border-radius: 2px;
         padding: 8px;
@@ -76,16 +76,16 @@
           background-color: lightblue;
         }
 
-        > .form-item {
+        > .formItem_form_item {
         }
       }
 
-      .cell-active {
+      .formItem_cell_active {
         background-color: lightblue;
       }
     }
 
-    .shell_phone {
+    .mid_shell_phone {
       transition: background-color 0.2s ease;
       background-color: #fff;
       flex-grow: 1;
@@ -134,7 +134,7 @@
     border: 1px solid #e4e4e4;
     width: 250px;
 
-    > .title {
+    > .right_title {
       padding: 8px;
       margin: 0;
       text-align: center;

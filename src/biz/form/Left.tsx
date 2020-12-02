@@ -1,15 +1,17 @@
 /*
- * @Author: your name
- * @Date: 2020-06-01 11:41:44
- * @LastEditTime: 2020-12-01 11:31:47
+ * @Author: HanRui(JoyNop)
+ * @Date: 2020-11-30 14:28:45
  * @LastEditors: HanRui(JoyNop)
- * @Description: In User Settings Edit
- * @FilePath: \react-form-design\src\container\column.js
+ * @LastEditTime: 2020-12-01 17:58:51
+ * @Description: file content
  */
+ 
 
 import React, { Component } from "react";
 import Seed from "./Seed";
 import { Droppable } from "react-beautiful-dnd";
+import * as style from "./form.module.less";
+
 interface LeftProps {
   items: any;
 }
@@ -17,15 +19,15 @@ interface LeftProps {
 class Left extends Component<LeftProps> {
   render() {
     return (
-      <div  >
+      <div className={style.left}>
         {this.props.items.map((el: any, i: number) => (
           <React.Fragment key={i}>
-            <h3 className="title">{el.title}</h3>
+            <h3 className={style.left_title}>{el.title}55</h3>
             <Droppable droppableId={el.id}>
               {(provided, snapshot) => {
                 return (
                   <div
-                    className="shell"
+                    className={style.left_shell}
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                     // isDraggingOver={snapshot.isDraggingOver}

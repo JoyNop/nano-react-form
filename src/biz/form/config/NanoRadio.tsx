@@ -60,7 +60,7 @@ class NanoRadio extends Component<BaseFormItemProps> {
             value={defaultValue}
           >
             {options.options.map((el: any, i: number) => (
-              <Radio style={radioStyle} value={el.value}>
+              <Radio style={radioStyle} value={el.value} key={i}>
                 <div key={i} style={{ marginBottom: "3px", display: "inline" }}>
                   <span>标题</span>：
                   <Input

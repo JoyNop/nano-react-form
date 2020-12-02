@@ -2,19 +2,24 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-11-30 14:35:12
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-01 10:58:59
+ * @LastEditTime: 2020-12-01 18:35:03
  * @Description: file content
  */
 import { connect } from "react-redux";
+import * as common from "@/utils/common";
+import * as action from "./service/formActions";
+import * as style from "./form.module.less";
 
 import React, { Component } from "react";
 import FormItem from "./FormItem";
 import { Droppable } from "react-beautiful-dnd";
 import { Form, Modal, Switch, Radio } from "antd";
 import { AppState } from "@/store";
+import Preview from "./Preview";
 
 interface StoreProps {
   state: AppState;
+  setFormClientMode: (mode: "phone"|"pc") => void
 }
 
 interface MidProps extends StoreProps {
@@ -25,16 +30,31 @@ class Mid extends Component<MidProps> {
   state = {
     visible: false,
   };
-  handleSubmit = () => {
-    console.log(1);
+  handleSubmit = (e:any) => {
+    Modal.info({
+      width: '600px',
+      title: '动态表单json数据',
+      content: (
+          <div >
+              <div>
+                  <span>表单配置(config)：</span>
+                  <p><pre>{JSON.stringify(this.props.state.form.config, null, "\t")}</pre></p>
+              </div>
+              <div>
+                  <span>表单项配置(content)：</span>
+                  <p><pre>{JSON.stringify(this.props.state.form.content, null, "\t")}</pre></p>
+              </div>
+          </div>
+      ),
+      onOk() { },
+  });
   };
   render() {
     const { config, content, mode } = this.props.state.form;
     return (
-      <div className="mid" style={{ width: "calc(100% - 416px)" }}>
-        <h3 className="title">表单内容</h3>
-        {/* <p style={{ width: "100%" }}>
-          {" "}
+      <div className={style.mid} style={{ width: "calc(100% - 416px)" }}>
+        <h3 className={style.mid_title}>表单内容</h3>
+        <div style={{ width: "100%" }}>
           {common.isEmpty(content) ? (
             ""
           ) : (
@@ -48,19 +68,19 @@ class Mid extends Component<MidProps> {
           <Radio.Group
             style={{ float: "right" }}
             onChange={(e) => {
-              //  mode.set(e.target.value)
+              this.props.setFormClientMode(e.target.value)
             }}
             value={mode}
           >
             <Radio value="pc">PC模式</Radio>
             <Radio value="phone">手机模式</Radio>
           </Radio.Group>
-        </p> */}
+        </div>
         <Droppable droppableId={"content"}>
           {(provided, snapshot) => {
             return (
               <div
-                className={mode === "pc" ? "shell" : "shell_phone"}
+                className={mode === "pc" ? style.mid_shell : style.mid_shell_phone}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
                 // isDraggingOver={snapshot.isDraggingOver}
@@ -89,7 +109,7 @@ class Mid extends Component<MidProps> {
           }}
         </Droppable>
 
-        {/* <Modal
+        <Modal
           title="表单预览"
           visible={this.state.visible}
           onOk={this.handleSubmit}
@@ -97,12 +117,15 @@ class Mid extends Component<MidProps> {
           destroyOnClose
           okText="模拟提交"
         >
+          <div>
+
           <Preview
-            ref="Preview"
-            config={this.props.store.config.get}
-            content={this.props.store.content.get}
-          />
-        </Modal> */}
+            // ref="Preview"
+            // config={this.props.store.config.get}
+            // content={this.props.store.content.get}
+            />
+            </div>
+        </Modal>
       </div>
     );
   }
@@ -112,6 +135,9 @@ const mapStateToProps = (state: AppState) => ({
   state,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch: any) => ({
+   
+  setFormClientMode: (mode: "phone"|"pc") => dispatch(action.setFormClientMode(mode)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Mid);

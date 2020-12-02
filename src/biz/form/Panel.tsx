@@ -4,13 +4,14 @@ import initialData from "./initialData";
 import Left from "./Left";
 import * as style from "./form.module.less";
 import Mid from "./Mid";
- 
+
 import { connect } from "react-redux";
 import { AppState } from "@/store";
 
 import * as action from "./service/formActions";
 import Right from "./Right";
 
+ 
 interface PanelProps {
   state: AppState;
   setFormActiveId: (activeId: string) => void;
@@ -91,9 +92,9 @@ class Panel extends Component<PanelProps> {
         <div className={style.form_design_panel}>
           <Left items={this.state.seeds} />
           <Mid config={this.state.config} />
-          <Right 
+          <Right
           // callback={this.updateConfig}
-           />
+          />
         </div>
       </DragDropContext>
     );

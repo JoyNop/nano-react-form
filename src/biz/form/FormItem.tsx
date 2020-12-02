@@ -2,18 +2,29 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-11-30 14:35:39
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-01 10:59:42
+ * @LastEditTime: 2020-12-01 18:15:25
  * @Description: file content
  */
 
 import React, { Component } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { Form, Input, Radio, Checkbox, DatePicker, Select, Switch } from "antd";
+import {
+  Form,
+  Input,
+  Radio,
+  Checkbox,
+  DatePicker,
+  Select,
+  Switch,
+  Button,
+} from "antd";
 import * as action from "./service/formActions";
+import * as style from "./form.module.less";
 
 import * as common from "@/utils/common";
 import { AppState } from "@/store";
 import { connect } from "react-redux";
+import { CopyOutlined, DeleteOutlined } from "@ant-design/icons";
 interface StoreProps {
   state: AppState;
   setFormActiveId: (activeId: string) => void;
@@ -65,7 +76,9 @@ class FormItem extends Component<FormItemProps> {
       >
         {(provided, snapshot) => (
           <div
-            className={`cell ${isActive ? "cell-active" : ""}`}
+            className={`${style.formItem_cell} ${
+              isActive ? style.formItem_cell_active : ""
+            }`}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
@@ -78,7 +91,7 @@ class FormItem extends Component<FormItemProps> {
               switch (data.type) {
                 case "input":
                   return (
-                    <div className="form-item">
+                    <div className={style.formItem_form_item}>
                       <Form.Item
                         label={data.label}
                         {...formItemLayout}
@@ -95,7 +108,7 @@ class FormItem extends Component<FormItemProps> {
                   );
                 case "textarea":
                   return (
-                    <div className="form-item">
+                    <div className={style.formItem_form_item}>
                       <Form.Item
                         label={data.label}
                         {...formItemLayout}
@@ -113,7 +126,7 @@ class FormItem extends Component<FormItemProps> {
                   );
                 case "radio":
                   return (
-                    <div className="form-item">
+                    <div className={style.formItem_form_item}>
                       <Form.Item
                         label={data.label}
                         {...formItemLayout}
@@ -131,7 +144,7 @@ class FormItem extends Component<FormItemProps> {
                   );
                 case "checkbox":
                   return (
-                    <div className="form-item">
+                    <div className={style.formItem_form_item}>
                       <Form.Item
                         label={data.label}
                         {...formItemLayout}
@@ -146,7 +159,7 @@ class FormItem extends Component<FormItemProps> {
                   );
                 case "select":
                   return (
-                    <div className="form-item">
+                    <div className={style.formItem_form_item}>
                       <Form.Item
                         label={data.label}
                         {...formItemLayout}
@@ -176,7 +189,7 @@ class FormItem extends Component<FormItemProps> {
                   );
                 case "date":
                   return (
-                    <div className="form-item">
+                    <div className={style.formItem_form_item}>
                       <Form.Item
                         label={data.label}
                         {...formItemLayout}
@@ -193,7 +206,7 @@ class FormItem extends Component<FormItemProps> {
                   );
                 case "switch":
                   return (
-                    <div className="form-item">
+                    <div className={style.formItem_form_item}>
                       <Form.Item
                         label={data.label}
                         {...formItemLayout}
@@ -205,7 +218,7 @@ class FormItem extends Component<FormItemProps> {
                   );
                 case "title":
                   return (
-                    <div className="form-item">
+                    <div className={style.formItem_form_item}>
                       <p
                         style={{
                           fontSize: data.options.fontSize,
@@ -224,8 +237,8 @@ class FormItem extends Component<FormItemProps> {
             })()}
             {isActive && (
               <div style={{ position: "absolute", right: "0", bottom: "0" }}>
-                <span
-                  className="iconfont icon-fuzhi"
+                <Button
+                 icon={<CopyOutlined/>}
                   title="复制"
                   style={{
                     fontSize: "20px",
@@ -243,10 +256,10 @@ class FormItem extends Component<FormItemProps> {
                     this.props.setFormActiveId(newFormItem.id);
                     this.props.setFormContent(content);
                   }}
-                ></span>
-                <span
-                  className="iconfont icon-shanchu"
-                  title="删除"
+                ></Button>
+
+                <Button
+                  icon={<DeleteOutlined />}
                   style={{ fontSize: "20px", cursor: "pointer" }}
                   onClick={() => {
                     if (content.length > 1) {
@@ -257,7 +270,8 @@ class FormItem extends Component<FormItemProps> {
                     content.splice(this.props.index, 1);
                     this.props.setFormContent(content);
                   }}
-                ></span>
+                />
+              
               </div>
             )}
           </div>
