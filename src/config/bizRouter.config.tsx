@@ -37,6 +37,18 @@ const routes: Array<BizRouter> = [
       fallback: <InitSpin />,
     }),
   },
+
+  {
+    name: "s",
+    path: "/s",
+    permission: true,
+    exact: true,
+    singlePage: true,
+    hasMenu: false,
+    component: loadable(() => import("@/page/submit.page"), {
+      fallback: <InitSpin />,
+    }),
+  },
 ];
 
 export default routes;

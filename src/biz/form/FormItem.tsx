@@ -2,7 +2,7 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-11-30 14:35:39
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-01 18:15:25
+ * @LastEditTime: 2020-12-03 18:10:15
  * @Description: file content
  */
 
@@ -89,6 +89,7 @@ class FormItem extends Component<FormItemProps> {
             {(() => {
               switch (data.type) {
                 case "input":
+                  case "calculation":
                   return (
                     <div className={style.formItem_form_item}>
                       <Form.Item

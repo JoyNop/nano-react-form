@@ -2,7 +2,7 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-12-01 18:18:38
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-03 16:17:52
+ * @LastEditTime: 2020-12-03 16:31:02
  * @Description: file content
  */
 import { AppState } from "@/store";
@@ -19,7 +19,6 @@ import {
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import * as common from "@/utils/common";
 import { matchComponment } from "./config/Match";
 
 interface PreviewProps {

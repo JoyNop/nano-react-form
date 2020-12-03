@@ -2,7 +2,7 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-11-30 14:35:12
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-01 18:35:03
+ * @LastEditTime: 2020-12-03 17:12:40
  * @Description: file content
  */
 import { connect } from "react-redux";
@@ -16,6 +16,7 @@ import { Droppable } from "react-beautiful-dnd";
 import { Form, Modal, Switch, Radio } from "antd";
 import { AppState } from "@/store";
 import Preview from "./Preview";
+import { Link } from "react-router-dom";
 
 interface StoreProps {
   state: AppState;
@@ -58,12 +59,18 @@ class Mid extends Component<MidProps> {
           {common.isEmpty(content) ? (
             ""
           ) : (
+
+            <div>
+
+           
             <a
               style={{ float: "left" }}
               onClick={() => this.setState({ visible: true })}
             >
               点击预览
-            </a>
+            </a>||
+            <p><Link to="/s">单页面预览</Link></p>
+             </div>
           )}
           <Radio.Group
             style={{ float: "right" }}

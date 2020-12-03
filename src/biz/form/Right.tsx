@@ -2,7 +2,7 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-12-01 09:56:34
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-02 14:51:02
+ * @LastEditTime: 2020-12-03 18:12:12
  * @Description: 右侧config配置项
  */
 import { AppState } from "@/store";
@@ -23,6 +23,7 @@ import {
   NanoTextArea,
   NanoTitle,
 } from "./config/Index";
+import NanoCalculation from "./config/NanoCalculation";
 
 interface RightStoreProps {
   state: AppState;
@@ -40,12 +41,11 @@ class Right extends Component<RightProps> {
   };
 
   private updateItem = (key: string, value: any) => {
-  
     const { activeId, content } = this.props.state.form;
-    debugger 
-     let target = content.find((el) => el.id === activeId);
+    debugger;
+    let target = content.find((el) => el.id === activeId);
     console.log(target);
-    
+
     if (key === "label") {
       target.label = value;
     } else {
@@ -53,18 +53,17 @@ class Right extends Component<RightProps> {
     }
 
     console.log(content);
-    
+
     this.props.setFormContent(content);
   };
 
   render() {
     const { config, content, activeId } = this.props.state.form;
 
- 
     return (
       <div className={style.right}>
         <h3 className={style.right_title}>表单配置</h3>
-        <Tabs defaultActiveKey="2" style={{ padding: "8px" }}>
+        <Tabs defaultActiveKey="1" style={{ padding: "8px" }}>
           <Tabs.TabPane tab="字段属性" key="1">
             {(() => {
               if (common.isEmpty(activeId)) return;
@@ -102,6 +101,14 @@ class Right extends Component<RightProps> {
                   case "title":
                     return (
                       <NanoTitle item={target} callback={this.updateItem} />
+                    );
+                  case "calculation":
+                    return (
+                      <NanoCalculation
+                        item={target}
+                        callback={this.updateItem}
+                        content={content}
+                      />
                     );
                   default:
                     break;

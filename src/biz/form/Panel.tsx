@@ -2,7 +2,7 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-11-30 15:28:23
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-03 16:17:56
+ * @LastEditTime: 2020-12-03 17:55:01
  * @Description: file content
  */
 import React, { Component } from "react";
@@ -19,7 +19,6 @@ import * as action from "./service/formActions";
 import Right from "./Right";
 import _ from "lodash";
 
- 
 interface PanelProps {
   state: AppState;
   setFormActiveId: (activeId: string) => void;
@@ -35,10 +34,18 @@ class Panel extends Component<PanelProps> {
     const { destination, source, draggableId } = result;
 
     const { content } = this.props.state.form;
+
  
-     let start: any;
+
+    let start: any;
     if (source.droppableId.indexOf("seeds") !== -1) {
-      start = _.cloneDeep(this.state.seeds[0].items[source.index] );
+      
+      start = _.cloneDeep(this.state.seeds[0].items[source.index]);
+    }
+
+    if (source.droppableId.indexOf("pro") !== -1) {
+      
+      start = _.cloneDeep(this.state.seeds[1].items[source.index]);
     }
     if (source.droppableId.indexOf("content") !== -1) {
       start = _.cloneDeep(content[source.index]);
@@ -51,21 +58,19 @@ class Panel extends Component<PanelProps> {
       delete start.icon;
       content.splice(0, 0, start);
     } else {
-      if (destination.droppableId.indexOf("seeds") !== -1) return; // 任何地方拖放到菜单，不处理
+      if (destination.droppableId.indexOf("seeds") !== -1||destination.droppableId.indexOf("pro") !== -1) return; // 任何地方拖放到菜单，不处理
 
-
-      
       const finish = _.cloneDeep(content[destination.index]); // 结束地必是表单面板
       const startIndex = source.index;
       const finishIndex = destination.index;
- 
+
       if (finish && start.id === finish.id) return; // 无拖动
 
       if (source.droppableId.indexOf("content") !== -1) {
         // 起点在表单面板
-         content.splice(startIndex, 1);
+        content.splice(startIndex, 1);
         content.splice(finishIndex, 0, start);
-      } else if (source.droppableId.indexOf("seeds") !== -1) {
+      } else if (source.droppableId.indexOf("seeds") !== -1||source.droppableId.indexOf("pro") !== -1) {
         // 起点在菜单
         start.id = `content-${this.getKey()}---${content.length}`;
         start.code = `code_${this.getKey()}${this.getKey()}`;
@@ -73,7 +78,7 @@ class Panel extends Component<PanelProps> {
         content.splice(finishIndex, 0, start);
       }
     }
-     this.props.setFormActiveId(start.id);
+    this.props.setFormActiveId(start.id);
     this.props.setFormContent(content);
   };
 

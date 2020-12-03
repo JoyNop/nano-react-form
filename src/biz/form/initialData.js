@@ -2,11 +2,10 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-11-30 14:25:39
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-03 16:25:37
+ * @LastEditTime: 2020-12-03 18:00:22
  * @Description: file content
  * @FilePath: /nano-react-form/src/biz/form/initialData.js
  */
-
 
 const initialData = {
   seeds: [
@@ -135,6 +134,27 @@ const initialData = {
             textAlign: "left",
             fontWeight: "normal",
           },
+        },
+      ],
+    },
+    {
+      id: "pro",
+      title: "高级字段",
+      items: [
+        {
+          id: "pro-1",
+          label: "计算文本",
+          type:  "calculation",
+          icon: "icon-danhangwenben",
+          options: {
+            width: "100%",
+            defaultValue: "",
+            required: false,
+            disabled: false,
+            dataType: "text",
+            placeholder: "请输入",
+          },
+          code: "",
         },
       ],
     },
