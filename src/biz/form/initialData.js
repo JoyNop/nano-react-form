@@ -2,9 +2,11 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-11-30 14:25:39
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-03 16:18:08
- * @Description:  初始化数据
+ * @LastEditTime: 2020-12-03 16:25:37
+ * @Description: file content
+ * @FilePath: /nano-react-form/src/biz/form/initialData.js
  */
+
 
 const initialData = {
   seeds: [
