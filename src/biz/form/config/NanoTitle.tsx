@@ -1,3 +1,10 @@
+/*
+ * @Author: HanRui(JoyNop)
+ * @Date: 2020-11-30 11:17:38
+ * @LastEditors: HanRui(JoyNop)
+ * @LastEditTime: 2020-12-03 16:18:44
+ * @Description: file content
+ */
 import React, { Component } from "react";
 import { Input, Radio, Switch } from "antd";
 import { SketchPicker } from "react-color";

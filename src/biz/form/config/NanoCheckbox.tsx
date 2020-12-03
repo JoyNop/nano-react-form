@@ -44,8 +44,7 @@ class NanoCheckbox extends Component<BaseFormItemProps> {
               title="添加"
               style={{ cursor: "pointer", color: "greed" }}
               onClick={() => {
-                console.warn("options", options);
-                let _options = options.options;
+                 let _options = options.options;
                 _options.push({
                   label: `标题${_options.length + 1}`,
                   value: `值${_options.length + 1}`,

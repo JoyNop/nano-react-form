@@ -2,8 +2,8 @@
  * @Author: HanRui(JoyNop)
  * @Date: 2020-12-01 09:56:34
  * @LastEditors: HanRui(JoyNop)
- * @LastEditTime: 2020-12-01 17:59:37
- * @Description: file content
+ * @LastEditTime: 2020-12-02 14:51:02
+ * @Description: 右侧config配置项
  */
 import { AppState } from "@/store";
 import { Radio, Tabs } from "antd";
@@ -40,21 +40,27 @@ class Right extends Component<RightProps> {
   };
 
   private updateItem = (key: string, value: any) => {
+  
     const { activeId, content } = this.props.state.form;
-    let target = content.find((el) => el.id === activeId);
+    debugger 
+     let target = content.find((el) => el.id === activeId);
+    console.log(target);
+    
     if (key === "label") {
       target.label = value;
     } else {
       target.options[key] = value;
     }
+
+    console.log(content);
+    
     this.props.setFormContent(content);
   };
 
   render() {
     const { config, content, activeId } = this.props.state.form;
 
-    console.warn("activeId, content", activeId, content);
-
+ 
     return (
       <div className={style.right}>
         <h3 className={style.right_title}>表单配置</h3>

@@ -58,8 +58,7 @@ class FormItem extends Component<FormItemProps> {
             wrapperCol: { span: 14 },
           }
         : null;
-    console.warn(" activeId, data.id", activeId, data.id);
-    const isActive = activeId === data.id;
+     const isActive = activeId === data.id;
     const {
       defaultValue,
       placeholder,

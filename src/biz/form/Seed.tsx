@@ -1,11 +1,11 @@
 /*
- * @Author: your name
- * @Date: 2020-06-01 11:42:36
- * @LastEditTime: 2020-12-01 17:56:45
+ * @Author: HanRui(JoyNop)
+ * @Date: 2020-11-30 14:29:17
  * @LastEditors: HanRui(JoyNop)
- * @Description: In User Settings Edit
- * @FilePath: \react-form-design\src\container\Seed.js
+ * @LastEditTime: 2020-12-03 16:17:42
+ * @Description: file content
  */
+
 import {   PlusCircleOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import { Draggable } from 'react-beautiful-dnd'

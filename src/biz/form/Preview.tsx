@@ -1,17 +1,33 @@
+/*
+ * @Author: HanRui(JoyNop)
+ * @Date: 2020-12-01 18:18:38
+ * @LastEditors: HanRui(JoyNop)
+ * @LastEditTime: 2020-12-03 16:17:52
+ * @Description: file content
+ */
 import { AppState } from "@/store";
-import { Checkbox, DatePicker, Form, Input, Radio, Select, Switch } from "antd";
+import {
+  Button,
+  Checkbox,
+  DatePicker,
+  Form,
+  Input,
+  Radio,
+  Select,
+  Switch,
+} from "antd";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import * as common from "@/utils/common";
+import { matchComponment } from "./config/Match";
 
 interface PreviewProps {
   state: AppState;
 }
 export class Preview extends Component<PreviewProps> {
   handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log(e,"333");
+    console.log(e, "333");
 
     // this.props.form.validateFieldsAndScroll((err, values) => {
     //     if (!err) {
@@ -23,6 +39,8 @@ export class Preview extends Component<PreviewProps> {
   render() {
     const { config, content } = this.props.state.form;
 
+    console.log(content);
+
     const formItemLayout =
       config.layout === "horizontal"
         ? {
@@ -33,12 +51,34 @@ export class Preview extends Component<PreviewProps> {
 
     return (
       <Form
-        style={{ backgroundColor: "#FFF" }}
-        layout={config.layout}
-        labelAlign={config.labelAlign}
+        // style={{ backgroundColor: "#FFF" }}
+        // layout={config.layout}
+        // labelAlign={config.labelAlign}
         onFinish={this.handleSubmit}
+        name="content_preview"
       >
-        {content.map((el, i) =>
+        {/* <Form.Item label="hhh" name="sdfa"    rules={[{ required:true, message: '不能为空' }]}><Input/></Form.Item> */}
+
+        {content.map((el: any, i: number) => {
+          return (
+            <Form.Item
+              key={el.code}
+              label={el.label}
+              name={el.code}
+              rules={[{ required: el.options.required, message: "不能为空" }]}
+            >
+              {matchComponment(config,el)}
+            </Form.Item>
+          );
+        })}
+
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+
+        {/* {content.map((el, i) =>
           el.type === "title" ? (
             <p
               style={{
@@ -52,11 +92,13 @@ export class Preview extends Component<PreviewProps> {
             </p>
           ) : (
             <Form.Item
+              data-re={el.options.required}
               label={el.label}
+              name={el.label}
               {...formItemLayout}
               labelAlign={config.labelAlign}
-
-              rules={[{ required: true, message: '不能为空' }]}
+              key={i}
+              rules={[{ required: el.options.required, message: "不能为空" }]}
             >
               {
                 // form.getFieldDecorator(el.code, {
@@ -149,7 +191,7 @@ export class Preview extends Component<PreviewProps> {
               }
             </Form.Item>
           )
-        )}
+        )} */}
       </Form>
     );
   }

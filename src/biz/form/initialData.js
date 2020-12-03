@@ -1,11 +1,11 @@
 /*
- * @Author: your name
- * @Date: 2020-06-01 11:43:08
- * @LastEditTime: 2020-12-01 15:07:42
+ * @Author: HanRui(JoyNop)
+ * @Date: 2020-11-30 14:25:39
  * @LastEditors: HanRui(JoyNop)
- * @Description: In User Settings Edit
- * @FilePath: \react-form-design\src\container\todoData.js
+ * @LastEditTime: 2020-12-03 16:18:08
+ * @Description:  初始化数据
  */
+
 const initialData = {
   seeds: [
     {

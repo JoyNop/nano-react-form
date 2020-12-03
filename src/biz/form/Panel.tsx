@@ -1,3 +1,10 @@
+/*
+ * @Author: HanRui(JoyNop)
+ * @Date: 2020-11-30 15:28:23
+ * @LastEditors: HanRui(JoyNop)
+ * @LastEditTime: 2020-12-03 16:17:56
+ * @Description: file content
+ */
 import React, { Component } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import initialData from "./initialData";
@@ -10,6 +17,7 @@ import { AppState } from "@/store";
 
 import * as action from "./service/formActions";
 import Right from "./Right";
+import _ from "lodash";
 
  
 interface PanelProps {
@@ -27,19 +35,13 @@ class Panel extends Component<PanelProps> {
     const { destination, source, draggableId } = result;
 
     const { content } = this.props.state.form;
-
-    console.warn(
-      "destination, source, draggableId",
-      destination,
-      source,
-      draggableId
-    );
-    let start: any;
+ 
+     let start: any;
     if (source.droppableId.indexOf("seeds") !== -1) {
-      start = { ...this.state.seeds[0].items[source.index] };
+      start = _.cloneDeep(this.state.seeds[0].items[source.index] );
     }
     if (source.droppableId.indexOf("content") !== -1) {
-      start = { ...content[source.index] };
+      start = _.cloneDeep(content[source.index]);
     }
 
     if (!destination) {
@@ -51,17 +53,17 @@ class Panel extends Component<PanelProps> {
     } else {
       if (destination.droppableId.indexOf("seeds") !== -1) return; // 任何地方拖放到菜单，不处理
 
-      const finish = { ...content[destination.index] }; // 结束地必是表单面板
+
+      
+      const finish = _.cloneDeep(content[destination.index]); // 结束地必是表单面板
       const startIndex = source.index;
       const finishIndex = destination.index;
-      console.warn("finishIndex", finishIndex);
-
+ 
       if (finish && start.id === finish.id) return; // 无拖动
 
       if (source.droppableId.indexOf("content") !== -1) {
         // 起点在表单面板
-        console.warn("start", start);
-        content.splice(startIndex, 1);
+         content.splice(startIndex, 1);
         content.splice(finishIndex, 0, start);
       } else if (source.droppableId.indexOf("seeds") !== -1) {
         // 起点在菜单
@@ -71,8 +73,7 @@ class Panel extends Component<PanelProps> {
         content.splice(finishIndex, 0, start);
       }
     }
-    console.warn("最新content", content);
-    this.props.setFormActiveId(start.id);
+     this.props.setFormActiveId(start.id);
     this.props.setFormContent(content);
   };
 
